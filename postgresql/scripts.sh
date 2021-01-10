@@ -8,4 +8,8 @@ mkdir -pv /pg/{data,log,wal,backup/{full,dump}}
 # Altera o proprietario dos arquivos e diretorios para o usuario postgres e grupo postgres
 chown -v postgres:postgres -R /pg
 chown -v postgres:postgres /tmp/postgresql.conf
+
+chmod +x /tmp/run-{full,dump}.sh
+chown -v postgres:postgres /tmp/run-{dump,full}.sh
+
 chown -v postgres:postgres /etc/pgbackrest.conf
