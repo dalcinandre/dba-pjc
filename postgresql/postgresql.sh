@@ -12,3 +12,7 @@ export PGTZ='America/Cuiaba' # podendo claro ser mudado para atender as localida
 
 # stanza padrao do sistema de backups
 export PGBACKREST_STANZA='dbpolicia'
+
+# adicionando um alias para o ls e ip com cor na saida do comando
+alias ls="ls --color"
+alias ip="ip --color"
