@@ -1,0 +1,37 @@
+version: "3"
+services:
+  dbpolicia:
+    build: .
+    container_name: "pjc"
+    env_file:
+      - config.env
+    volumes:
+      - db-data:/pg/data/
+      - db-backup:/pg/backup/
+      - db-log:/pg/log/
+      - db-wal:/pg/wal/
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d/
+        #- ./postgresql/postgresql.conf:/pg/backup/postgresql.conf
+    ports:
+      - 5432:5432
+    networks:
+      policia:
+        ipv4_address: "192.168.0.1"
+
+volumes:
+  db-data:
+  db-backup:
+  db-log:
+  db-wal:
+
+networks:
+  policia:
+    ipam:
+      driver: default
+      config:
+        - subnet: "192.168.0.0/24"
+          ip_range: "192.168.0.0/24"
+          gateway: "192.168.0.254"
+          dns:
+            - 8.8.8.8
+            - 8.8.4.4
